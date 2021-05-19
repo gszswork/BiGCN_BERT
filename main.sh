@@ -14,4 +14,5 @@ python ./model/Weibo/BiGCN_mine.py 1
 python ./model/Twitter/BiGCN_Twitter.py Twitter15 100
 #python ./model/Twitter/BiGCN_Twitter.py Twitter16 100
 
+# To run the BiGCN_BERT model.
 python ./model/Weibo/BiGCN_BERT.py 1
