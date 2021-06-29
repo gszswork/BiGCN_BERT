@@ -29,6 +29,9 @@ torch_geometric==1.3.2
 tqdm==4.40.0  
 joblib==0.14.1  
 
+
+# Alternativge dependencies: 
+
 Make sure that cuda/bin, cuda/include and cuda/lib64 are in your $PATH, $CPATH and $LD_LIBRARY_PATH respectively before the installation, e.g.:
 ```
 $ echo $PATH
