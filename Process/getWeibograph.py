@@ -94,7 +94,7 @@ def getfeature(x_word,x_index):
 
 def main():
     bert_tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
-    treePath = os.path.join(cwd, 'data/Weibo/covid_tree.txt')
+    treePath = os.path.join(cwd, 'data/Weibo/weibotree.txt')
     print("reading Weibo tree")
     treeDic = {}
     for line in open(treePath):
@@ -106,7 +106,7 @@ def main():
         treeDic[eid][indexC] = {'parent': indexP, 'vec': Vec, 'txt': Text}
     print('tree no:', len(treeDic))
 
-    labelPath = os.path.join(cwd, "data/Weibo/covid_fake_label_file.txt")
+    labelPath = os.path.join(cwd, "data/Weibo/weibo_id_label.txt")
     print("loading weibo label:")
     event,y= [],[]
     l1 = l2 = 0
@@ -143,7 +143,7 @@ def main():
         result_dict[eid]['y'] = labelDic[eid]
 
     print('length of saving dictionary: ', len(result_dict))
-    save_obj(result_dict, 'covid_tree_dict')
+    save_obj(result_dict, 'tree_dict')
 
     return
 

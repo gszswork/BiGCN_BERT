@@ -140,7 +140,7 @@ def train_GCN(treeDic, x_test, x_train, TDdroprate, BUdroprate, lr, weight_decay
     optimizer = optimizer1
     model.train()
     train_losses, val_losses, train_accs, val_accs = [], [], [], []
-    #early_stopping = EarlyStopping(patience=patience, verbose=True)
+    # early_stopping = EarlyStopping(patience=patience, verbose=True)
     traindata_list, testdata_list = loadBiData(dataname, treeDic, x_train, x_test, TDdroprate, BUdroprate)
 
     traindata_list = [traindata_list[1], traindata_list[2]]
@@ -226,8 +226,8 @@ if __name__ == "__main__":
     patience = 5
     n_epochs = 200
     batchsize = 128
-    tddroprate = 0.1
-    budroprate = 0.1
+    tddroprate = 0.0
+    budroprate = 0.0
     datasetname = "Weibo"
     iterations = int(sys.argv[1])
     model = "BiGCN"

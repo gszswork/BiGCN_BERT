@@ -73,7 +73,7 @@ def getfeature(x_word,x_index):
 
 def main(obj):
     treePath = os.path.join(cwd, 'data/' + obj + '/data.TD_RvNN.vol_5000.txt')
-    print("reading twitter tree")
+    print("reading twitter tree from: ", treePath)
     treeDic = {}
     for line in open(treePath):
         line = line.rstrip()
@@ -122,7 +122,7 @@ def main(obj):
             x_x = getfeature(x_word, x_index)
             rootfeat, tree, x_x, rootindex, y = np.array(rootfeat), np.array(tree), np.array(x_x), np.array(
                 rootindex), np.array(y)
-            np.savez( os.path.join(cwd, 'data/'+obj+'graph/'+id+'.npz'), x=x_x,root=rootfeat,edgeindex=tree,rootindex=rootindex,y=y)
+            np.savez(os.path.join(cwd, 'data/'+obj+'graph/'+id+'.npz'), x=x_x,root=rootfeat,edgeindex=tree,rootindex=rootindex,y=y)
             return None
     print("loading dataset", )
     Parallel(n_jobs=30, backend='threading')(delayed(loadEid)(treeDic[eid] if eid in treeDic else None,eid,labelDic[eid]) for eid in tqdm(event))

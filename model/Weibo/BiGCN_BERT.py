@@ -18,6 +18,8 @@ from torch_geometric.nn import GCNConv
 import copy, pickle
 from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score
 from transformers import AutoTokenizer, AutoModel
+
+
 device = 'cuda'
 dirname = 'data/'
 def save_obj(obj, name ):
@@ -66,6 +68,7 @@ class BUrumorGCN(th.nn.Module):
         super(BUrumorGCN, self).__init__()
         self.conv1 = GCNConv(in_feats, hid_feats)
         self.conv2 = GCNConv(hid_feats+in_feats, out_feats)
+
     def forward(self, data):
         x, edge_index = data.x, data.BU_edge_index
         x1 = copy.copy(x.float())
@@ -93,7 +96,7 @@ class BUrumorGCN(th.nn.Module):
         return x
 
 class Net(th.nn.Module):
-    def __init__(self,in_feats,hid_feats,out_feats):
+    def __init__(self,in_feats, hid_feats, out_feats):
         super(Net, self).__init__()
         self.TDrumorGCN = TDrumorGCN(in_feats, hid_feats, out_feats)
         self.BUrumorGCN = BUrumorGCN(in_feats, hid_feats, out_feats)
@@ -153,6 +156,16 @@ class MyGraphDataset(Dataset):
             bunew_edgeindex = [burow,bucol]
 
 
+        '''
+        Return: 
+        input_ids, attn_mask: BERT model的输入
+        edge_index: Top-Down 格式下的邻接关系，shape(2,n)，第一行为邻接矩阵的行，第二行为邻接矩阵的列.
+        BU_edge_index: Botton-Up 的邻接关系， 在没有dropout的前提下，edge_index 和 BU_edge_index代表的邻接矩阵互为对方的转置.
+        y: label
+        root: 根节点的ids
+        rootindex: 好像没有用到
+        
+        '''
         return Data(input_ids=data['inputs_ids'],
                     attn_mask=data['attn_mask'],
                     edge_index=torch.LongTensor(new_edgeindex), BU_edge_index=torch.LongTensor(bunew_edgeindex),
@@ -166,8 +179,8 @@ def train():
     patience = 5
     n_epochs = 200
     batchsize = 1
-    tddroprate = 0.1
-    budroprate = 0.1
+    tddroprate = 0.0
+    budroprate = 0.0
     datasetname = "Weibo"
     #iterations = int(sys.argv[1])
     model = "BiGCN"
@@ -384,4 +397,4 @@ def classify_covid():
     print(count)
 
 if __name__ == '__main__':
-    classify_covid()
+    train()
