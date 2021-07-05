@@ -2,6 +2,8 @@
 
 `
 python ./Process/getWeibograph.py
+
+
 python ./model/Weibo/BiGCN_BERT.py 1
 `
 
