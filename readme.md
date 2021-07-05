@@ -1,3 +1,10 @@
+# How to Run 
+
+`
+python ./Process/getWeibograph.py
+python ./model/Weibo/BiGCN_BERT.py 1
+`
+
 # Paper of the source codes released:  
 Tian Bian, Xi Xiao, Tingyang Xu, Peilin Zhao, Wenbing Huang, Yu Rong, Junzhou Huang. Rumor Detectionon Social Media with Bi-Directional Graph Convolutional Networks. AAAI 2020.
 
