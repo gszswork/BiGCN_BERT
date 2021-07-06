@@ -16,3 +16,5 @@ python ./model/Twitter/BiGCN_Twitter.py Twitter15 100
 
 # To run the BiGCN_BERT model.
 python ./model/Weibo/BiGCN_BERT.py 1
+# To run the GAT_BERT model.
+python ./model/Weibo/GAT_BERT.py
