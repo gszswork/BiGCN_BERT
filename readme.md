@@ -30,7 +30,7 @@ The Weibo datafile 'weibotree.txt' is in a tab-sepreted column format, where eac
 For a detailed description of Twitter datafile 'data.TD_RvNN.vol_5000.txt' can be seen at [RvNN](https://github.com/majingCUHK/Rumor_RvNN).
 
 # Dependencies:  
-python==3.5.2  
+python==3.8.0  
 numpy==1.18.1  
 torch==1.4.0  
 torch_scatter==1.4.0  
